@@ -380,21 +380,29 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>gpio_helper.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\gpio_helper.c</FilePath>
+              <FilePath>.\main.c</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>src</GroupName>
+          <Files>
             <File>
               <FileName>gpio_helper.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\gpio_helper.h</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>gpio_helper.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
+              <FilePath>.\gpio_helper.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>inc</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
