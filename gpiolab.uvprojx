@@ -389,6 +389,11 @@
               <FileType>5</FileType>
               <FilePath>.\gpio_helper.h</FilePath>
             </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
