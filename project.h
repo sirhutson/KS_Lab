@@ -1,8 +1,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "inc/hw_memmap.h"
-#include "inc/hw_types.h"
-#include "inc/hw_gpio.h"
+
+
 #include "driverlib/adc.h"
 #include "driverlib/aes.h"
 #include "driverlib/can.h"
@@ -40,3 +40,7 @@
 #include "driverlib/udma.h"
 #include "driverlib/usb.h"
 #include "driverlib/watchdog.h"
+
+#include "inc/hw_types.h"
+#include "inc/hw_gpio.h"
+#include "gpio_helper.h"

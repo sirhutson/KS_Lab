@@ -1,9 +1,4 @@
-#include "Gpio_helper.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include "project.h"
-
-
+#include "gpio_helper.h"
 
 	//This function sets up GPIO pins
 	void Gpio_setup()
@@ -22,8 +17,11 @@
 			HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = 0;
 			GPIODirModeSet(GPIO_PORTF_BASE, GPIO_PIN_4|GPIO_PIN_0, GPIO_DIR_MODE_IN);
 			GPIOPadConfigSet(GPIO_PORTF_BASE,GPIO_PIN_4|GPIO_PIN_0,GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU);
-			
 		
+			GPIOPadConfigSet(GPIO_PORTD_BASE,GPIO_PIN_6|GPIO_PIN_7,GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU); // This enables the pull up resistors on pin 6 and 7 
+			GPIODirModeSet(GPIO_PORTD_BASE, GPIO_PIN_6|GPIO_PIN_7, GPIO_DIR_MODE_IN);												 // of portD and prevents needing to power and add 
+																																																		   // resistors to the external mom switches.
+	
 
 	} 
 
