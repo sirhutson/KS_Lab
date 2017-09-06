@@ -1,9 +1,7 @@
-#include "Gpio_helper.h"
+#include "gpio_helper.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include "project.h"
-
-
 
 	//This function sets up GPIO pins
 	void Gpio_setup()
@@ -22,20 +20,27 @@
 			HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = 0;
 			GPIODirModeSet(GPIO_PORTF_BASE, GPIO_PIN_4|GPIO_PIN_0, GPIO_DIR_MODE_IN);
 			GPIOPadConfigSet(GPIO_PORTF_BASE,GPIO_PIN_4|GPIO_PIN_0,GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU);
-			
-		
 
 	} 
-
+	
+	void SysTick_Setup()
+	{
+		//Setup the SysTick counter
+		SysTickPeriodSet(1000); //1000 is the number of clock ticks in each period
+		SysTickEnable(); 				//Enable SysTick
+		
+	}
+	
+	
 	//This function retrieves the GPIO data
-	void process_GPIO();
+	void process_GPIO()
 	{
 		//code here.
 	} 
 
 	//This function prints the GPIO_DATA  
 	//in a human readable format to the terminal
-	void print_GPIO_data();
+	void print_GPIO_data()
 	{
 		//Uart must be initialized first.
 		//code here.
