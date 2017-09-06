@@ -1,4 +1,10 @@
 #include "project.h"
-#include <stdio.h>
-#include <stdint.h>
 
+
+void Gpio_setup (void) ;
+
+int main()
+{
+	
+	
+}

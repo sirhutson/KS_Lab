@@ -26,14 +26,14 @@
 	} 
 
 	//This function retrieves the GPIO data
-	void process_GPIO();
+	void process_GPIO()
 	{
 		//code here.
 	} 
 
 	//This function prints the GPIO_DATA  
 	//in a human readable format to the terminal
-	void print_GPIO_data();
+	void print_GPIO_data()
 	{
 		//Uart must be initialized first.
 		//code here.
