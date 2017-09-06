@@ -11,6 +11,7 @@
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060422::V5.06 update 4 (build 422)::ARMCC</pCCUsed>
+      <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>TM4C123GH6PM</Device>
@@ -416,6 +417,16 @@
               <FileName>example.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\example.c</FilePath>
+            </File>
+            <File>
+              <FileName>gpio_helper.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\gpio_helper.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpio_helper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\gpio_helper.c</FilePath>
             </File>
           </Files>
         </Group>

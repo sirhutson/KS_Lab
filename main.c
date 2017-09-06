@@ -1,8 +1,6 @@
-#include "gpio_helper.h"
+#include "project.h"
 
-
-void LED Display () 
+int main()
 {
-	
-	
+
 }
