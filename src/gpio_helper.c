@@ -44,6 +44,7 @@
 	//in a human readable format to the terminal
 	void print_GPIO_data()
 	{
+		// maybe create an array and have the value printed/sent to the uart port?
 		//Uart must be initialized first.
 		//code here.
 	} 

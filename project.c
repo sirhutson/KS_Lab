@@ -4,7 +4,10 @@ void loading() // This function cuts the red led on and off, totally unneccessar
 {
 int i;
 i = 10; 
-	
+
+	while(GPIOPinRead(GPIO_PORTF_BASE,GPIO_PIN_4)!=0x00) //waits until you press the left button 
+		{
+		}
 	for(i=0;i<10;i++)
 		{
 			SysCtlDelay(1000000);  // Random delay I chose
