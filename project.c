@@ -14,3 +14,21 @@ int main()
 		}
 		
 }
+
+
+void read_from_terminal()
+{
+		switch()
+		{
+			case a:
+			//input whatever the case and then end line
+			break;
+			case b:
+			//input whatever the case and then end line
+			break;
+		
+		}
+
+	
+	
+}
