@@ -423,6 +423,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\gpio_helper.h</FilePath>
             </File>
+            <File>
+              <FileName>uart_helper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\uart_helper.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart_helper.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\uart_helper.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
