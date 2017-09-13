@@ -11,10 +11,11 @@ i = 10;
 	for(i=0;i<10;i++)
 		{
 			SysCtlDelay(1000000);  // Random delay I chose
+			GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_7,GPIO_PIN_7);
 			GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1); //Red Light On
 			SysCtlDelay(1000000);  // Random delay I chose
 			GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,0); //Red Light Off
-
+			GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_7,0);
 		}
 	
 }
@@ -41,30 +42,29 @@ void LED_Display()
 		GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);  // blue light indicates user has begun touching stuff and process is under way
 			
 }	
+
+void read_from_terminal()
+{
+	
+	
+	printf("Wake Up Neo...\n\r");
+	
+}
 int main()
 {
 		Gpio_setup();
 	
-		loading(); //function that blinks red light specified number of times as if it were booting the system up
+		//loading(); //function that blinks red light specified number of times as if it were booting the system up
 		
-		LED_Display();
-				
+		//LED_Display();
+	
+		Uart_setup();
+	
+		print_menu();
+	
+		read_from_terminal();
 }
 
 
-//void read_from_terminal()
-//{
-//		switch()
-//		{
-//			case a:
-//			//input whatever the case and then end line
-//			break;
-//			case b:
-//			//input whatever the case and then end line
-//			break;
-//		
-//		}
-
-//	
-//}	
+	
 

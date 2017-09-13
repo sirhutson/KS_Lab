@@ -7,10 +7,18 @@
 #include "hw_memmap.h"
 #include "hw_types.h"
 #include "hw_gpio.h"
-#include "uart.h"
+#include "adc.h"
 #include "pin_map.h"
 #include "../inc/tm4c123gh6pm.h"
 
-void Uart_setup(void);
-void process_Uart(uint32_t base);
-void print_menu(void);
+struct ADC_DATA
+{
+	char book;
+	int i;
+	
+} info;
+
+
+void ADC_setup(void); 
+void process_ADC( struct ADC_DATA * );
+void print_ADC_DATA( struct ADC_DATA * );
