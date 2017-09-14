@@ -3,11 +3,10 @@
 void loading() // This function cuts the red led on and off, totally unneccessary 
 {
 int i;
-i = 10; 
 
-	while(GPIOPinRead(GPIO_PORTF_BASE,GPIO_PIN_4)!=0x00) //waits until you press the left button 
-		{
-		}
+	//while(GPIOPinRead(GPIO_PORTF_BASE,GPIO_PIN_4)!=0x00) //waits until you press the left button 
+	//{
+	//}
 	for(i=0;i<10;i++)
 		{
 			SysCtlDelay(1000000);  // Random delay I chose
@@ -45,17 +44,56 @@ void LED_Display()
 
 void read_from_terminal()
 {
+	char f;
+	while(!UARTCharsAvail(UART0_BASE)) //waits until info is put on the UART PORT
+{
+	loading(); //blinks led while waiting
+}
+	f = UARTCharGet(UART0_BASE); //waits until character is put in UART and makes f equal to that
 	
+	printf("You sent this character over %c\n\r",f);
 	
-	printf("Wake Up Neo...\n\r");
-	
+	switch(f) //checks what character user inputted
+	{
+		case 'a':
+		case 'A':
+			printf("Executing function A which is...");
+			break;
+		
+		case 'b':
+		case 'B':
+			printf("Executing function A which is...");
+			break;
+		
+		case 'c':
+		case 'C':
+			printf("Executing function A which is...");
+			break;
+		
+		case 'd':
+		case 'D':
+			printf("Executing function A which is...");
+			break;
+		
+		case 'e':
+		case 'E':
+			printf("Executing function A which is...");
+			break;
+		
+		case 'f':
+		case 'F':
+			printf("Executing function A which is...");
+			break;
+		
+		default:
+			printf("%c is not an option\n\r",f);
+	}
+		
 }
 int main()
 {
 		Gpio_setup();
 	
-		//loading(); //function that blinks red light specified number of times as if it were booting the system up
-		
 		//LED_Display();
 	
 		Uart_setup();

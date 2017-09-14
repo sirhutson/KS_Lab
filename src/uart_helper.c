@@ -4,6 +4,41 @@
 void UART_OutChar(char data);
 int fputc(int ch, FILE *f);
 
+
+//Redirect info to debugger from SirHutson
+
+int fgetc(FILE *f);
+char Mander(void);
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+//MMMMMMMMMMMMMMMMMNNNNMMMMMMMMMMMMMMMMMMM
+//MMMMMMMMMMMMMMN+IIIIIIINMMMMMMMMMMMMMMMM
+//MMMMMMMMMMMMNIIIII$IIIIIIMMMMMMMMMMMMMMM
+//MMMMMMMMNIIIIIIIIN.NNIIIINMMMMMMMMMMMMMM
+//MMMMMMMMNDZIIIIIZNNNZIIIIIMMMMMMMMMMMMMM
+//MMMMMMMMD8888IIIINZZNIIII7MMMMMMMMMMMMMM
+//MMMMMMMMMD88888IIIIIIIIIIDMMMMMMM8M+MMMM
+//MMMMMMMMMMMD8??7$OIIIIIIIMMMMMMMM+++=MMM
+//MMMMMDI7NMD8???8IIIIIIII7MMMMMMMZ++++MMM
+//MMMMMIIII7$8?ZIIIIIIIII7NI+IIIM+++I777MM
+//MMMMMMIIIII$NNN777II7=++IIIIIIN+++?777MM
+//MMMMMMMIIIIIIN~8IIIIIIIIIIIIIDMZ+7777MMM
+//MMMMMMMMOIII~~~~~NIIIIIIII7MMMMMMM7OMMMM
+//MMMMMMMMMM7+~~~~~~III77DIMMMMMMMMM7IMMMM
+//MMMMMMMMMMD~~~~~~~$7IIIIINMMMMMMMMIZMMMM
+//MMMMMMMMMM~~~~~~~~~IIIIIIIMMMMMMMDI7MMMM
+//MMMMMMMMMM~~~~~~~~~IIIIIIIMMMMMMOI77MMMM
+//MMMMMMM8+$~~~~~~~~~IIIIIIIMMMMDII7~MMMMM
+//MMMMMN+III?~~~~~~~87IIIIII77IIIII~MMMMMM
+//MMMMMIIII77=~~~~~IIIIIIII777IIID+MMMMMMM
+//M,7IIII77777+~~~7IIIIIIIIN77N++8MMMMMMMM
+//MMN777I777777O++77IIIII77++++DMMMMMMMMMM
+//MMMMD77777MMMMMM77777777NNMMMMMMMMMMMMMM
+//MMMMMMD77MMMMMMMMN77777NMMMMMMMMMMMMMMMM
+//MMMMMMMMMMMMMMMMMN77777DMMMMMMMMMMMMMMMM
+//MMMMMMMMMMMMMMMMMD=7~7~MMMMMMMMMMMMMMMMM
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+//MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+
 //This function sets up your Uart hardware
 void Uart_setup()
 {
@@ -24,8 +59,23 @@ void Uart_setup()
 	
 } 
 
+char Mander()
+{
+	while((UART0_FR_R&UART_FR_RXFE) != 0); //waits for the receive fifo to not be empty
+	return ((char)(UART0_DR_R&0xFF)); //returns the character from the port
+}
+// Get a character from UART.
+int fgetc(FILE *f){
+  return Mander();
+}
+
+// Function called when file error occurs.
+int ferror(FILE *f){
+  /* Your implementation of ferror */
+  return 1;
+}
 void UART_OutChar(char data){
-  while((UART0_FR_R&UART_FR_TXFF) != 0);
+  while((UART0_FR_R&UART_FR_TXFF) != 0);  //waits for the send fifo to be clear
   UART0_DR_R = data;
 }
 
@@ -62,9 +112,11 @@ void print_menu()
 	//char select[6];   // character array with the name select
 	char select[] = {'A','B','C','D','E','F'};
 	
+	printf(" Please select letter to execute that function\n\r");
+	
 	for(i=0;i<6;i++)
 	{
-		printf(" Please select letter to execute that function [%c]\n\r",select[i]);
+		printf("%c\n\r",select[i]);
 	}
 	
 	
