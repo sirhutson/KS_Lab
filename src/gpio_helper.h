@@ -6,6 +6,8 @@
 #include "../inc/hw_memmap.h"
 #include "../inc/hw_types.h"
 #include "../inc/hw_gpio.h"
+#include "../inc/hw_nvic.h"
+#include "../inc/hw_types.h"
 
 void Gpio_setup (void) ; 
 void process_GPIO( void );

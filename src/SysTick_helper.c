@@ -10,12 +10,6 @@
 //Creata a function that accepts 2 pointers to a timer struct and returns a 1 or 0 depending on a certain amount of time has elapsed.
 //Need a Global Struct- Lab requirements
 
-struct SysTickTimer
-{
-	uint32_t uS_Timer;	//Need 32bit microsecond timer
-	uint64_t mS_Timer;	//Need 64bit millisecond timer
-};
-
 //Taken from peripheral driver library
 void SysTick_Setup()
 {
@@ -30,4 +24,16 @@ void InterruptEnable()
 	//where to put this code? 
 	IntEnable(INT_GPIOF_TM4C123); //enables interrupt for PORTF
 	
+}
+
+//Time delay using busy wait.
+// The delay parameter is in units of the 80 MHz core clock. (12.5 ns)
+void SysTickWait(unsigned long delay)
+{
+	HWREG(NVIC_ST_RELOAD) = delay - 1; // number of counts to wait
+	HWREG(NVIC_ST_CURRENT) = 0; // any value written to CURRENT clears
+	while ((HWREG(NVIC_ST_CTRL) &= 0x00010000) == 0)
+	{
+		// wait for count flag
+	}
 }

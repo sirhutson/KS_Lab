@@ -52,6 +52,7 @@
 #include "driverlib/debug.h"
 #include "driverlib/interrupt.h"
 #include "driverlib/systick.h"
+#include "../inc/hw_nvic.h"
 
 //*****************************************************************************
 //
