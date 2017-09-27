@@ -7,7 +7,8 @@ int value;
  {
 
     //Set the clock
-  SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
+ // SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
+	 //clock already set in adc_helper
 	
 //set GPIO to work with timer	1
   GPIOPinConfigure(GPIO_PF1_T0CCP1);  //configure pf1 with timer 0 b

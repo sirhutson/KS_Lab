@@ -444,16 +444,6 @@
               <FilePath>.\src\adc_helper.h</FilePath>
             </File>
             <File>
-              <FileName>i2c_helper.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\i2c_helper.h</FilePath>
-            </File>
-            <File>
-              <FileName>i2c_helper.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\i2c_helper.c</FilePath>
-            </File>
-            <File>
               <FileName>PWM.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\PWM.c</FilePath>
@@ -463,7 +453,6 @@
               <FileType>5</FileType>
               <FilePath>.\src\PWM.h</FilePath>
             </File>
-
           </Files>
         </Group>
         <Group>
