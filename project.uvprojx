@@ -433,6 +433,26 @@
               <FileType>5</FileType>
               <FilePath>.\src\uart_helper.h</FilePath>
             </File>
+            <File>
+              <FileName>adc_helper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\adc_helper.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc_helper.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\adc_helper.h</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_helper.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\i2c_helper.h</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_helper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\i2c_helper.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

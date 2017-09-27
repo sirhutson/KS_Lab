@@ -7,10 +7,10 @@
 #include "hw_memmap.h"
 #include "hw_types.h"
 #include "hw_gpio.h"
-#include "uart.h"
+#include "i2c.h"
 #include "pin_map.h"
 #include "../inc/tm4c123gh6pm.h"
 
-void UART_setup(void);
-void process_UART(uint32_t base);
-void print_menu(void);
+
+void i2c_setup();
+void process_i2c();

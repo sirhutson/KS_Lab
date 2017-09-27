@@ -1,13 +1,13 @@
 #include "gpio_helper.h"
 
 	//This function sets up GPIO pins
-	void Gpio_setup()
+void Gpio_setup()
 	{
 			SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);  // Enables the use of PORTF
 			SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);  // Enables the use of PORTA
 			SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);  // Enables the use of PORTD
 		
-			GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3); // Defines the RGB Leds as outputs
+			GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_7); // Defines the RGB Leds as outputs
 			GPIOPinTypeGPIOInput (GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);  // Defines the two on board switches as inputs
 			GPIOPinTypeGPIOInput (GPIO_PORTD_BASE, GPIO_PIN_6|GPIO_PIN_7);  // Adds port d to be used for the two MOM switches
 		
@@ -35,14 +35,14 @@
 	} 
 
 	//This function retrieves the GPIO data
-	void process_GPIO()
+void process_GPIO()
 	{
 		//code here.
 	} 
 
 	//This function prints the GPIO_DATA  
 	//in a human readable format to the terminal
-	void print_GPIO_data()
+void print_GPIO_data()
 	{
 		// maybe create an array and have the value printed/sent to the uart port?
 		//Uart must be initialized first.
