@@ -33,38 +33,46 @@ void ADC_setup()
 	GPIO_PORTD_DEN_R &= ~0x03; //Clear bits so that it will function as analog
 	GPIO_PORTD_AMSEL_R |= 0x03; //Analog function enabled and isolation turned off
 	
-
+	
+	ADCSequenceConfigure(ADC0_BASE, 0, ADC_TRIGGER_PROCESSOR, 0);
+	
+	ADCSequenceStepConfigure(ADC0_BASE, 0, 0,ADC_CTL_CH0);
+	ADCSequenceStepConfigure(ADC0_BASE, 0, 1,ADC_CTL_CH1| ADC_CTL_END);
+	
+	ADCSequenceEnable(ADC0_BASE, 0);
+	
 }
     
 
 
 void process_ADC()
 {
-	uint32_t ui32Value;   // variable that will store adc information
-	
-	ADCSequenceConfigure(ADC0_BASE, 0, ADC_TRIGGER_PROCESSOR, 0);
-	
-	ADCSequenceStepConfigure(ADC0_BASE, 0, 0, ADC_CTL_IE | ADC_CTL_END | ADC_CTL_CH0);
-	
-	ADCSequenceEnable(ADC0_BASE, 0);
+	uint32_t * adcstuff;   // variable that will store adc information
+	adcstuff = (uint32_t *) &ADCinfo; 
 
+	
 	ADCProcessorTrigger(ADC0_BASE, 0);  // Trigger the sample sequence.
 
 	while(!ADCIntStatus(ADC0_BASE, 0, false))  // Wait until the sample sequence has completed.
 	{
 	}
 
-	ADCSequenceDataGet(ADC0_BASE, 0, &ui32Value);  // Read the value from the ADC.
+	ADCSequenceDataGet(ADC0_BASE, 0, adcstuff);  // Read the value from the ADC.
 
-
+	
 }
 
 
-//void print_ADC_DATA()
-//{
-//	
-//	
-//	
-//	
-//	
-//}
+void print_ADC_DATA(struct ADC_DATA * ADCinfo)
+{
+	printf("The information gathered from the analog to digital converter is %02x\n\r", ADCinfo->POT1);
+	printf("The information gathered from the analog to digital converter is %02x\n\r", ADCinfo->POT2);
+	
+}
+
+
+
+
+
+
+
