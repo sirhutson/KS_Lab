@@ -336,7 +336,11 @@
               <MiscControls>--c99</MiscControls>
               <Define>rvmdk PART_TM4C123GH6PM TARGET_IS_TM4C123_RB1</Define>
               <Undefine></Undefine>
+
               <IncludePath>..\..;.\src;.\driverlib;.\inc</IncludePath>
+
+              <IncludePath>..\..;.\driverlib;.\src;.\inc</IncludePath>
+
             </VariousControls>
           </Cads>
           <Aads>
@@ -409,14 +413,48 @@
           <GroupName>src</GroupName>
           <Files>
             <File>
-              <FileName>example.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\example.c</FilePath>
-            </File>
-            <File>
               <FileName>gpio_helper.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\gpio_helper.c</FilePath>
+            </File>
+            <File>
+
+              <FileName>gpio_helper.c</FileName>
+
+              <FileName>gpio_helper.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\gpio_helper.h</FilePath>
+            </File>
+            <File>
+              <FileName>uart_helper.c</FileName>
+
+              <FileType>1</FileType>
+              <FilePath>.\src\uart_helper.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart_helper.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\uart_helper.h</FilePath>
+            </File>
+            <File>
+              <FileName>adc_helper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\adc_helper.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc_helper.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\adc_helper.h</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\PWM.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\PWM.h</FilePath>
             </File>
             <File>
               <FileName>SysTick_helper.c</FileName>

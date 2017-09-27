@@ -43,5 +43,14 @@
 
 #include "inc/hw_types.h"
 #include "inc/hw_gpio.h"
+
 #include "gpio_helper.h"
 #include "SysTick_helper.h"
+
+#include "./src/gpio_helper.h"
+#include "./src/uart_helper.h"
+#include "../inc/tm4c123gh6pm.h"
+#include "../src/adc_helper.h"
+#include "./src/PWM.h"
+#include "../inc/tm4c123gh6pm.h"
+
