@@ -1,5 +1,8 @@
 #include "project.h"
 
+
+struct ADC_DATA ADCinfo;
+
 void loading() // This function cuts the red led on and off, totally unneccessary 
 {
 int i;
