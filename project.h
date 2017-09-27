@@ -47,3 +47,5 @@
 #include "./src/uart_helper.h"
 #include "../inc/tm4c123gh6pm.h"
 #include "../src/adc_helper.h"
+#include "./src/PWM.h"
+#include "../inc/tm4c123gh6pm.h"

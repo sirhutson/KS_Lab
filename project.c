@@ -100,6 +100,9 @@ int main()
 		UART_setup();
 	
 		//LED_Display();
+	  
+	  PWM_setup();
+		PWM_example();
 	
 		
 	
