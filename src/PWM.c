@@ -41,8 +41,9 @@ TimerEnable(TIMER0_BASE, TIMER_B);
 
  void PWM_example(){
 	 
- value= GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_0);
- if( (value & GPIO_PIN_0)==0){
+// value= GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_0);
+// if( (value & GPIO_PIN_0)==0){
+	 while (GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_0) != 0x00){
 	for (int x=0; x<=10; x++)
 	 {
 		for(int i=Period-2; i >  0;i--){            // Starts with Purple on

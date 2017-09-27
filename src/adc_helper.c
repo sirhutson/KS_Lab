@@ -38,7 +38,7 @@ void ADC_setup()
     
 
 
-void process_ADC()
+void process_ADC( struct ADC_DATA * data_ptr )
 {
 	uint32_t ui32Value;   // variable that will store adc information
 	
