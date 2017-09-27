@@ -40,7 +40,7 @@ char Mander(void);
 //MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 
 //This function sets up your Uart hardware
-void Uart_setup()
+void UART_setup()
 {
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0); //Turns on the UART port
 	
@@ -50,8 +50,8 @@ void Uart_setup()
 	
 	GPIOPinConfigure(GPIO_PA1_U0TX); //Pin 1 is configured as transmit
 
-	SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
-                       SYSCTL_XTAL_16MHZ);   //This will be moved to a different module
+	//SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
+    //                   SYSCTL_XTAL_16MHZ);   //This will be moved to a different module
 	
 	UARTConfigSetExpClk(UART0_BASE, SysCtlClockGet(), 38400,
                             (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
@@ -91,18 +91,15 @@ int fputc(int ch, FILE *f){
 }
 
 //This function retrieves UART data
-void process_Uart(uint32_t base) // Processes data for any uart port but base must be entered as UARTx_BASE
+void process_UART(uint32_t base) // Processes data for any uart port but base must be entered as UARTx_BASE
 {
-		while(!UARTCharsAvail(base))  // This function waits until there is data to get
-		{
-			printf("NO DATA TO READ\n\r");
-		}
+int f;
 		
-		while(UARTCharGetNonBlocking(base)) // This gets the information from the port
-		{
-			printf("READING DATA IN\n\r");
+	f = UARTCharGet(base); //waits until character is put in UART and makes f equal to that
+	
+	printf("You sent this character over %c\n\r",f);
 			
-		}
+		
 } 
 
 //This function prints a menu in human readable format

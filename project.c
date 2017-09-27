@@ -21,7 +21,7 @@ int i;
 
 void LED_Display()
 {
-			while(GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_0)!=0x00)  // waits for the user to press start
+			while(GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_6)!=0x00)  // waits for the user to press start
 					{
 								
 						SysCtlDelay(1000000);  // Random delay I chose
@@ -49,9 +49,9 @@ void read_from_terminal()
 {
 	loading(); //blinks led while waiting
 }
-	f = UARTCharGet(UART0_BASE); //waits until character is put in UART and makes f equal to that
-	
-	printf("You sent this character over %c\n\r",f);
+
+	process_UART(UART0_BASE);
+
 	
 	switch(f) //checks what character user inputted
 	{
@@ -94,13 +94,15 @@ int main()
 {
 		Gpio_setup();
 	
+		UART_setup();
+	
 		//LED_Display();
 	
-		Uart_setup();
+		
 	
-		print_menu();
+		//print_menu();
 	
-		read_from_terminal();
+		//read_from_terminal();
 }
 
 

@@ -9,7 +9,7 @@ void Gpio_setup()
 		
 			GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_7); // Defines the RGB Leds as outputs
 			GPIOPinTypeGPIOInput (GPIO_PORTF_BASE, GPIO_PIN_0|GPIO_PIN_4);  // Defines the two on board switches as inputs
-			GPIOPinTypeGPIOInput (GPIO_PORTD_BASE, GPIO_PIN_6);  // Adds port d to be used for the two MOM switches
+			GPIOPinTypeGPIOInput (GPIO_PORTD_BASE, GPIO_PIN_6|GPIO_PIN_7);  // Adds port d to be used for the two MOM switches
 		
 			// The code below unlocks the buttons and sets the drive strength, this was taken from a TIVA example file
 			HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = GPIO_LOCK_KEY;
