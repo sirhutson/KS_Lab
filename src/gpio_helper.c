@@ -1,6 +1,6 @@
 #include "gpio_helper.h"
 #include "../inc/hw_nvic.h"
-#include "SysTick_helper.h"
+
 
 	//This function sets up GPIO pins
 	void Gpio_setup()
@@ -22,15 +22,17 @@
 		
 			GPIOPadConfigSet(GPIO_PORTD_BASE,GPIO_PIN_6|GPIO_PIN_7,GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU); // This enables the pull up resistors on pin 6 and 7 
 			GPIODirModeSet(GPIO_PORTD_BASE, GPIO_PIN_6|GPIO_PIN_7, GPIO_DIR_MODE_IN);												 // of portD and prevents needing to power and add 
-																																																		   // resistors to the external mom switches.
-	
-
+		
 	} 
 
 	//This function retrieves the GPIO data
 	void process_GPIO()
 	{
 		//code here.
+		//press button, turn LED on, if button is held down, begin interrupt timer? is that possible?
+		
+		
+		
 	} 
 
 	//This function prints the GPIO_DATA  
@@ -38,22 +40,23 @@
 	void print_GPIO_data()
 	{
 		//Uart must be initialized first.
+		//can we display interrupt data to Uart?
 		//code here.
 	} 
 	
-	void SendOne(void)
-{
-	// 80 MHz core clock (12.5 ns or 0.0125 us)
-	//Using Data sheet T1H must be '1' for 0.7us, then '0' for 0.6 us. 
-	HWREG(NVIC_ST_CTRL) = 0; // disable SysTick during setup
-	HWREG(NVIC_ST_RELOAD) = NVIC_ST_RELOAD_M; // maximum reload value
-	HWREG(NVIC_ST_CURRENT) = 0; // any write to current clears it	 
-	HWREG(NVIC_ST_CTRL) = NVIC_ST_CTRL_ENABLE + NVIC_ST_CTRL_CLK_SRC; // enable SysTick with core clock
+//	void SendOne(void)
+//{
+//	// 80 MHz core clock (12.5 ns or 0.0125 us)
+//	//Using Data sheet T1H must be '1' for 0.7us, then '0' for 0.6 us. 
+////	HWREG(NVIC_ST_CTRL) = 0; // disable SysTick during setup
+////	HWREG(NVIC_ST_RELOAD) = NVIC_ST_RELOAD_M; // maximum reload value
+////	HWREG(NVIC_ST_CURRENT) = 0; // any write to current clears it	 
+////	HWREG(NVIC_ST_CTRL) = NVIC_ST_CTRL_ENABLE + NVIC_ST_CTRL_CLK_SRC; // enable SysTick with core clock
 
-	unsigned long i;  //Long used for timer
+////	unsigned long i;  //Long used for timer
 
-		SysTickWait(56); // wait 0.7us    56 Cycles * 0.0125 us =  0.7 us
+////		SysTickWait(56); // wait 0.7us    56 Cycles * 0.0125 us =  0.7 us
 
-	//GPIOPinWrite(WSPort, WSPin, 0x0); //Sends a logical '0' to WSPin
-		SysTickWait(48); // wait 0.7us    48 Cycles * 0.0125 us =  0.6 us
-}
+////	//GPIOPinWrite(WSPort, WSPin, 0x0); //Sends a logical '0' to WSPin
+////		SysTickWait(48); // wait 0.7us    48 Cycles * 0.0125 us =  0.6 us
+//}

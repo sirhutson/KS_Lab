@@ -8,7 +8,9 @@
 #include "../inc/hw_gpio.h"
 #include "../inc/hw_nvic.h"
 #include "../inc/hw_types.h"
+#include "SysTick_helper.h"
 
-void Gpio_setup (void) ; 
+
+void Gpio_setup ( void ); 
 void process_GPIO( void );
 void print_GPIO_DATA( void );
