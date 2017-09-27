@@ -33,6 +33,7 @@ void ADC_setup()
 	GPIO_PORTD_DEN_R &= ~0x03; //Clear bits so that it will function as analog
 	GPIO_PORTD_AMSEL_R |= 0x03; //Analog function enabled and isolation turned off
 	
+	ADCSequenceDisable(ADC0_BASE, 0);
 	
 	ADCSequenceConfigure(ADC0_BASE, 0, ADC_TRIGGER_PROCESSOR, 0);
 	
