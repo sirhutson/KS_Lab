@@ -6,14 +6,14 @@
 #include "../inc/hw_nvic.h"
 #include "../inc/hw_types.h"
 
-
-
-//Variables
-int Tdiff;
+struct SysTickTimers
+{
+	uint32_t mSTimer;
+	uint64_t uSTimer;
+};
 
 void SysTick_Setup(void);
 void InterruptEnable(void);
-void SysTickWait(unsigned long delay);
-uint64_t SysTickDifference(uint32_t uSTimer, uint64_t mSTimer);
+int SysTickDifference(struct SysTickTimers * myTimer);
 
-
+extern struct SysTickTimers Mytimer;
