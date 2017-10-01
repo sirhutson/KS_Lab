@@ -5,9 +5,6 @@ int value;
 
  void PWM_setup(void)
  {
-
-    //Set the clock
-  SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
 	
 //set GPIO to work with timer	1
   GPIOPinConfigure(GPIO_PF1_T0CCP1);  //configure pf1 with timer 0 b
@@ -15,9 +12,9 @@ int value;
  GPIOPinConfigure(GPIO_PF3_T1CCP1);   //configure pf3 with timer 1 b
   GPIOPinTypeTimer(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);
 	 
-//define period and duty cycle
- //Period = SysCtlClockGet()/100000; //800Hz
-  //dutyCycle = Period/2; //400Hz
+  //define period and duty cycle
+  Period = SysCtlClockGet()/100000; //800Hz
+  dutyCycle = Period/2; //400Hz
 
 //setup timer	0 (b) and timer 1 (a&b)
   SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0); 
@@ -47,8 +44,8 @@ TimerEnable(TIMER0_BASE, TIMER_B);
 	for (int x=0; x<=10; x++)
 	 {
 		for(int i=Period-2; i >  0;i--){            // Starts with Purple on
-			TimerMatchSet(TIMER0_BASE, TIMER_B, i);   // Red on
-			TimerMatchSet(TIMER1_BASE, TIMER_A, i);   // Blue on
+			TimerMatchSet(TIMER0_BASE|TIMER1_BASE, TIMER_B|TIMER_A, i);   // Red & Blue on
+
 			SysCtlDelay(time);
 			}  
       
@@ -66,8 +63,7 @@ TimerEnable(TIMER0_BASE, TIMER_B);
  
 			//Green and red brightness goes down - PF3 //both turn off               
     for(int i=1; i < Period-1; i++){
-      TimerMatchSet(TIMER1_BASE, TIMER_B, i); 
-      TimerMatchSet(TIMER0_BASE, TIMER_B, i);			
+      TimerMatchSet(TIMER1_BASE|TIMER0_BASE, TIMER_B|TIMER_B, i); 			
       SysCtlDelay(time);
 			} 
 			}
