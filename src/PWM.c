@@ -19,7 +19,7 @@ int value;
 //setup timer	0 (b) and timer 1 (a&b)
   SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0); 
   SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER1);    
- // SysCtlDelay(3);
+
   TimerConfigure(TIMER0_BASE, TIMER_CFG_SPLIT_PAIR|TIMER_CFG_B_PWM);   
   TimerLoadSet(TIMER0_BASE, TIMER_B, Period -1);                     
   TimerMatchSet(TIMER0_BASE, TIMER_B, dutyCycle); 
@@ -30,44 +30,54 @@ int value;
   TimerMatchSet(TIMER1_BASE, TIMER_B, dutyCycle); 
 	
 	  //Turn on both timers
-TimerEnable(TIMER0_BASE, TIMER_B);
+  TimerEnable(TIMER0_BASE, TIMER_B);
   TimerEnable(TIMER1_BASE, TIMER_A|TIMER_B);
+
 	return;
 
  }
 
  void PWM_example(){
 	 
-// value= GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_0);
-// if( (value & GPIO_PIN_0)==0){
-	 while (GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_0) != 0x00){
 	for (int x=0; x<=10; x++)
 	 {
-		for(int i=Period-2; i >  0;i--){            // Starts with Purple on
-			TimerMatchSet(TIMER0_BASE|TIMER1_BASE, TIMER_B|TIMER_A, i);   // Red & Blue on
+		for(int i=Period-2; i >  0;i--){          
+			TimerMatchSet(TIMER1_BASE, TIMER_A, i);   // Blue on
 
 			SysCtlDelay(time);
 			}  
       
-		   //Blue brightness goes down - PF2
-    for(int i=1; i < Period-1; i++){          //blue brightness goes down and we are left with red
+		//Blue brightness goes down - PF2
+    for(int i=1; i < Period-1; i++){          //blue brightness goes down 
       TimerMatchSet(TIMER1_BASE, TIMER_A, i);  
       SysCtlDelay(time);
 			}  
+		
+			for(int i=Period-2; i >  0;i--){           
+			TimerMatchSet(TIMER0_BASE, TIMER_B, i);   // Red on
 
-	    //Green brightness goes up - PF3         //green brightness goes up and mixes with red to make yellow?
+			SysCtlDelay(time);
+			}  
+			
+					// red brightness goes down              
+    for(int i=1; i < Period-1; i++){
+      TimerMatchSet(TIMER0_BASE, TIMER_B, i); 			
+      SysCtlDelay(time);
+			} 
+
+	    //Green brightness goes up - PF3         //green brightness 
     for(int i=Period-2; i >  0;i--){
       TimerMatchSet(TIMER1_BASE, TIMER_B, i);  
       SysCtlDelay(time);
 			}  
  
-			//Green and red brightness goes down - PF3 //both turn off               
+			//Green brightness goes down              
     for(int i=1; i < Period-1; i++){
-      TimerMatchSet(TIMER1_BASE|TIMER0_BASE, TIMER_B|TIMER_B, i); 			
+      TimerMatchSet(TIMER1_BASE, TIMER_B, i); 			
       SysCtlDelay(time);
-			} 
 			}
-		}
+		}		
+		
 	  return;
 
-	}
+}
