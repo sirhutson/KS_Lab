@@ -14,7 +14,7 @@ int value;
   GPIOPinConfigure(GPIO_PF1_T0CCP1);  //configure pf1 with timer 0 b
 	GPIOPinConfigure(GPIO_PF2_T1CCP0);  //configure pf2 with timer 1 a
  GPIOPinConfigure(GPIO_PF3_T1CCP1);   //configure pf3 with timer 1 b
-  GPIOPinTypeTimer(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);
+ GPIOPinTypeTimer(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);
 	 
 //define period and duty cycle
  //Period = SysCtlClockGet()/100000; //800Hz
@@ -34,15 +34,15 @@ int value;
   TimerMatchSet(TIMER1_BASE, TIMER_B, dutyCycle); 
 	
 	  //Turn on both timers
-TimerEnable(TIMER0_BASE, TIMER_B);
-  TimerEnable(TIMER1_BASE, TIMER_A|TIMER_B);
+//TimerEnable(TIMER0_BASE, TIMER_B);
+ // TimerEnable(TIMER1_BASE, TIMER_A|TIMER_B);
 	return;
 
  }
 
  void PWM_example(){
 	 
- value= GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_0);
+ value= GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_0);
  if( (value & GPIO_PIN_0)==0){
 	for (int x=0; x<=10; x++)
 	 {

@@ -3,6 +3,11 @@
 
 struct ADC_DATA ADCinfo;
 
+void SysTick_Handler()
+{
+	
+}
+
 void loading() // This function cuts the red led on and off, totally unneccessary 
 {
 int i;
@@ -84,12 +89,14 @@ void read_from_terminal()
 		
 		case 'e':
 		case 'E':
-			printf("Executing function E which is turn motor left");
+			printf("Executing function E which is turn motor left"); // no motor exists led will just pwm 
+			PWM_example();
 			break;
 		
 		case 'f':
 		case 'F':
-			printf("Executing function F which is turn motor right");
+			printf("Executing function F which is turn motor right"); // no motor exists led will just pwm 
+			PWM_example();
 			break;
 		
 		default:
@@ -99,6 +106,8 @@ void read_from_terminal()
 }
 int main()
 {
+		IntEnable(-1);
+		IntPendClear(-1);
 		ADC_setup(); // goes first because it has the clock settings 
 		Gpio_setup();
 	
@@ -106,11 +115,11 @@ int main()
 		  
 	  PWM_setup();
 		
-	
-		//PWM_example();
-	
+		
+
 		print_menu();
 		read_from_terminal();
+
 }
 
 

@@ -2,8 +2,8 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "sysctl.h"
 #include "gpio.h"
+#include "sysctl.h"
 #include "hw_memmap.h"
 #include "hw_types.h"
 #include "hw_gpio.h"

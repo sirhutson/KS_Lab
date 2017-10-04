@@ -24,6 +24,7 @@ void ADC_setup()
 	// Enable clock to correct port
 	
 	SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R3; //turns on portD clock gating
+	SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R4; //turns on portE clock gating
 	
 	//Configure proper pins
 	
