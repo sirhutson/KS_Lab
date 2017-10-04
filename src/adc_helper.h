@@ -18,7 +18,7 @@ struct ADC_DATA
 	uint32_t POT3;
 	uint32_t POT4;
 	uint32_t GYRO;
-	uint32_t sensor2;
+	uint32_t PRESSURE;
 	
 };
 

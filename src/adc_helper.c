@@ -27,18 +27,29 @@ void ADC_setup()
 	
 	//Configure proper pins
 	
-  GPIO_PORTD_AFSEL_R |= 0x03; //enable alt function on pins 0 and 1
+  GPIO_PORTD_AFSEL_R |= 0x0F; //enable alt function on pins 0-3
+	GPIO_PORTE_AFSEL_R |= 0x03; //enable alt function on pins 0 and 1 of E
+	GPIO_PORTE_PCTL_R |= GPIO_PCTL_PE0_AIN3; //PIN 0 is now analog in 
+	GPIO_PORTE_PCTL_R |= GPIO_PCTL_PE1_AIN2; //PIN 1 is now analog in
 	GPIO_PORTD_PCTL_R |= GPIO_PCTL_PD0_AIN7; //PIN 0 is now analog in 
 	GPIO_PORTD_PCTL_R |= GPIO_PCTL_PD1_AIN6; //PIN 1 is now analog in 
-	GPIO_PORTD_DEN_R &= ~0x03; //Clear bits so that it will function as analog
-	GPIO_PORTD_AMSEL_R |= 0x03; //Analog function enabled and isolation turned off
+	GPIO_PORTD_PCTL_R |= GPIO_PCTL_PD2_AIN5; //PIN 2 is now analog in 
+	GPIO_PORTD_PCTL_R |= GPIO_PCTL_PD3_AIN4; //PIN 3 is now analog in
+	GPIO_PORTD_DEN_R &= ~0x0F; // Clear bits so that it will function as analog
+	GPIO_PORTD_AMSEL_R |= 0x0F; // Analog function enabled and isolation turned off
+	GPIO_PORTE_DEN_R &= ~0x03;  // Clear bits so that it will function as analog
+	GPIO_PORTE_AMSEL_R |= 0x03; // Analog function enabled and isolation turned off
 	
 	ADCSequenceDisable(ADC0_BASE, 0);
 	
 	ADCSequenceConfigure(ADC0_BASE, 0, ADC_TRIGGER_PROCESSOR, 0);
 	
 	ADCSequenceStepConfigure(ADC0_BASE, 0, 0,ADC_CTL_CH0);
-	ADCSequenceStepConfigure(ADC0_BASE, 0, 1,ADC_CTL_CH1| ADC_CTL_END);
+	ADCSequenceStepConfigure(ADC0_BASE, 0, 1,ADC_CTL_CH1);
+	ADCSequenceStepConfigure(ADC0_BASE, 0, 2,ADC_CTL_CH2);
+	ADCSequenceStepConfigure(ADC0_BASE, 0, 3,ADC_CTL_CH3);
+	ADCSequenceStepConfigure(ADC0_BASE, 0, 4,ADC_CTL_CH4);
+	ADCSequenceStepConfigure(ADC0_BASE, 0, 5,ADC_CTL_CH5| ADC_CTL_END);
 	
 	ADCSequenceEnable(ADC0_BASE, 0);
 	
@@ -66,8 +77,12 @@ void process_ADC()
 
 void print_ADC_DATA(struct ADC_DATA * ADCinfo)
 {
-	printf("The information gathered from the analog to digital converter is %02x\n\r", ADCinfo->POT1);
-	printf("The information gathered from the analog to digital converter is %02x\n\r", ADCinfo->POT2);
+	printf("The information gathered from pot 1 is %02x\n\r", ADCinfo->POT1);
+	printf("The information gathered from pot 2 is %02x\n\r", ADCinfo->POT2);
+	printf("The information gathered from pot 3 is %02x\n\r", ADCinfo->POT3);
+	printf("The information gathered from pot 4 is %02x\n\r", ADCinfo->POT4);
+	printf("The information gathered from gyro is %02x\n\r", ADCinfo->GYRO);
+	printf("The information gathered from pressure sensor is %02x\n\r", ADCinfo->PRESSURE);
 	
 }
 
