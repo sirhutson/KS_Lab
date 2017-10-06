@@ -7,7 +7,20 @@ This should be a general description.  It should make sense to your grandma / or
 <em> This device is a tool used in the machining industry to control rotational speed of the shaft of a lathe.  The device consists of a motor to rotate the lathe, a dial to control the speed manual, an input port to control the speed via a computer terminal, a screen to display the rotational speed, an encoder to measure the rotation, and two emergency stop switches for safety. 
     
 ## Hardware List
-1. TM
+
+1. TM4C123GH6PM
+   -Port F RGB LEDs
+   -Port F user switches (SW1 & SW2)
+   
+Table 2-2. User Switches and RGB LED Signals
+GPIO Pin               Pin Function                     USB Device
+PF4                          GPIO                                  SW1
+PF0                          GPIO                                  SW2
+PF1                          GPIO                         RGB LED (Red)
+PF2                          GPIO                         RGB LED (Blue)
+PF3                          GPIO                       RGD LED (Green)
+(From the user guide)
+
 
 ## Hardware Description
 The Motor is connected to the encoder via JPF-23 cable, 3 wire, doubled shield.  The Encoder has a 13 bit resolution which allows the micrprocessor to control the motor to within N rpms, etc etc.  The schematic is show below.
