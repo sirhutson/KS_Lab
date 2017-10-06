@@ -13,6 +13,7 @@ This should be a general description.  It should make sense to your grandma / or
    -Port F user switches (SW1 & SW2)
    
 Table 2-2. User Switches and RGB LED Signals
+
 GPIO Pin               Pin Function                     USB Device
 PF4                          GPIO                                  SW1
 PF0                          GPIO                                  SW2
