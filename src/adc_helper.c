@@ -41,6 +41,9 @@ void ADC_setup()
 	GPIO_PORTE_DEN_R &= ~0x03;  // Clear bits so that it will function as analog
 	GPIO_PORTE_AMSEL_R |= 0x03; // Analog function enabled and isolation turned off
 	
+	
+	ADCReferenceSet(ADC0_BASE, ADC_REF_EXT_3V); // sets adc reference to three volts so that the conversion is accurate
+	
 	ADCSequenceDisable(ADC0_BASE, 0);
 	
 	ADCSequenceConfigure(ADC0_BASE, 0, ADC_TRIGGER_PROCESSOR, 0);
@@ -76,14 +79,21 @@ void process_ADC( struct ADC_DATA * data_ptr )
 }
 
 
-void print_ADC_DATA(struct ADC_DATA * ADCinfo)
+void print_ADC_DATA(struct ADC_DATA * INFO)
 {
-	printf("The information gathered from pot 1 is %02x\n\r", ADCinfo->POT1);
-	printf("The information gathered from pot 2 is %02x\n\r", ADCinfo->POT2);
-	printf("The information gathered from pot 3 is %02x\n\r", ADCinfo->POT3);
-	printf("The information gathered from pot 4 is %02x\n\r", ADCinfo->POT4);
-	printf("The information gathered from gyro is %02x\n\r", ADCinfo->GYRO);
-	printf("The information gathered from pressure sensor is %02x\n\r", ADCinfo->PRESSURE);
+	ADCconvertedinfo.POT1 = (ADCinfo.POT1 * .00080556);  // .80556 is found from a reference voltage of 3.3/4096 the resolution. multiply this by the result for the correct value
+	ADCconvertedinfo.POT2 = (ADCinfo.POT2 * .00080556); //  then divided by 1000 moves the decimal place over 3 places correctly
+	ADCconvertedinfo.POT3 = (ADCinfo.POT3 * .00080556);
+	ADCconvertedinfo.POT4 = (ADCinfo.POT4 * .00080556);
+
+	
+	
+	//Above is a really sloppy way to convert the values from the adc before they are printed
+	
+	printf("The information gathered from pot 1 is %.2f\n\r", ADCconvertedinfo.POT1);
+	printf("The information gathered from pot 2 is %.2f\n\r", ADCconvertedinfo.POT2);
+	printf("The information gathered from pot 3 is %.2f\n\r", ADCconvertedinfo.POT3);
+	printf("The information gathered from pot 4 is %.2f\n\r", ADCconvertedinfo.POT4);
 	
 }
 

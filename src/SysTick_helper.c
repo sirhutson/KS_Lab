@@ -38,7 +38,7 @@ int SysTickDifference(struct SysTickTimers * myTimer)
 	TimeDiff = (periodSet-CounterVal)*(12.5);
 	Mytimer.uSTimer = TimeDiff/(10^3);	//not sure this is right
 	Mytimer.mSTimer = TimeDiff/(10^6);
-	
+	return 0 ;
 }
 
 

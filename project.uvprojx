@@ -385,11 +385,6 @@
               <FileType>1</FileType>
               <FilePath>.\project.c</FilePath>
             </File>
-            <File>
-              <FileName>startup_rvmdk.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\startup_rvmdk.S</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

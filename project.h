@@ -54,3 +54,9 @@
 #include "./src/PWM.h"
 #include "../inc/tm4c123gh6pm.h"
 
+
+//***************************************************
+// The project.h file holds all the required libraries
+// to be used by the TIVA. This reduces the appearance
+// of cluttered code. 
+//***************************************************
