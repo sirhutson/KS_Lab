@@ -7,7 +7,7 @@ This should be a general description.  It should make sense to your grandma / or
 <em> This device is a tool used in the machining industry to control rotational speed of the shaft of a lathe.  The device consists of a motor to rotate the lathe, a dial to control the speed manual, an input port to control the speed via a computer terminal, a screen to display the rotational speed, an encoder to measure the rotation, and two emergency stop switches for safety. 
     
 ## Hardware List
-
+1. TM
 
 ## Hardware Description
 The Motor is connected to the encoder via JPF-23 cable, 3 wire, doubled shield.  The Encoder has a 13 bit resolution which allows the micrprocessor to control the motor to within N rpms, etc etc.  The schematic is show below.
@@ -16,18 +16,16 @@ The Motor is connected to the encoder via JPF-23 cable, 3 wire, doubled shield. 
 
 
 ## Software Description
-C files added by users, special functions, important functions, software flow, etc.   Flowcharts are also fine.  
-
 The file structure for this projects is as follows:
 
-    |   ├── .gitignore                <em>(list of files to ignore in Repo)</em>
-    |   ├── README.md                 <em>(a README file in markup language)</em>
-    |   ├── project.uvprojx           <em>(the keil project file)</em>
-    |   ├── project.c                 <em>(your main c file)</em>
-    |   ├── project.h                 <em>(main header)</em>
-    |   ├── project.sct               <em>(scatter file)</em>
-    |   ├── startup_rvmdk.S           <em>(startup file in asm)</em>
-    |   ├── src                       <em>(Directory for your .c and .h )</em>
+        ├── .gitignore                (list of files to ignore in Repo)
+        ├── README.md                 (a README file in markup language)
+        ├── project.uvprojx           (the keil project file)
+        ├── project.c                 (main c file)
+        ├── project.h                 (main header)
+        ├── project.sct               (scatter file)
+        ├── startup_rvmdk.S           (startup file in asm)
+        ├── src                       (Directory for your .c and .h )
             ├── PWM.c 
             ├── PWM.h
             ├── SysTick_helper.c 
@@ -37,15 +35,31 @@ The file structure for this projects is as follows:
             ├── gpio_helper.c
             ├── gpio_helper.h
             ├── uart_helper.c
-    |       └── uart_helper.h
-    |   ├── inc                       <em>(Directory for precompiled libraries and headers)</em>
-    |       ├── *.h files             <em>(*.h , the menu for micro controller)</em>
-    |       ├── *.lib files           <em>(*.lib ,precompiled libraries)</em>
-    |       └── ...  
-    |   ├── driverlib                 <em>(Directory for driver libraries source)</em>
-    |       ├── *.h files             
-    |       ├── *.c files
-    |       └── ...  
+            └── uart_helper.h
+        ├── inc                       (Directory for precompiled libraries and headers)
+            ├── <stdlib.h>
+            ├── <stdint.h>
+            ├── <stdbool.h>
+            ├── <stdio.h>
+            ├── hw_ints.h
+            ├── hw_memmap.h
+            ├── hw_timer.h
+            ├── hw_gpio.h
+            ├── hw_nvic.h
+            ├── hw_types.h
+            └── tm4c123gh6pm.h
+            
+        ├── driverlib                (Directory for driver libraries source)
+            ├── systick.h             
+            ├── interrupt.h
+            ├── adc.h
+            ├── pinmap.h
+            ├── gpio.h
+            ├── timer.h
+            ├── pin_map.h
+            ├── sysctl.h
+            └── uart.h
+           
   
 
 ## Summary and Conclusions
