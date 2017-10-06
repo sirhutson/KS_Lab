@@ -5,7 +5,7 @@
 
  void PWM_setup(void)
  {
-	
+
   //Set GPIO to work with timers
   GPIOPinConfigure(GPIO_PF1_T0CCP1);                                                       //Configures PF1 with TIMER 0 B
 	GPIOPinConfigure(GPIO_PF2_T1CCP0);                                                       //Configures PF2 with TIMER 1 A

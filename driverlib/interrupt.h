@@ -37,6 +37,7 @@
 //
 //*****************************************************************************
 
+#include <stdbool.h>
 #ifndef __DRIVERLIB_INTERRUPT_H__
 #define __DRIVERLIB_INTERRUPT_H__
 

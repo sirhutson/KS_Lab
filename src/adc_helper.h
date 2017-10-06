@@ -13,19 +13,19 @@
 
 struct ADC_DATA
 {
-	uint8_t POT1;
-	uint8_t POT2;
-	uint8_t POT3;
-	uint8_t POT4;
-	uint8_t GYRO;
-	uint8_t sensor2;
+	uint32_t POT1;
+	uint32_t POT2;
+	uint32_t POT3;
+	uint32_t POT4;
+	uint32_t GYRO;
+	uint32_t sensor2;
 	
 };
 
 
 void ADC_setup(void); 
-void process_ADC( struct ADC_DATA * data_ptr );
-void print_ADC_DATA( struct ADC_DATA * );
+void process_ADC();
+void print_ADC_DATA( struct ADC_DATA * INFO);
 
 
 
