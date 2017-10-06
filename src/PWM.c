@@ -50,40 +50,40 @@
 	   }  
       
 		//Blue brightness goes down
-    for(int i=1; i < Period-1; i++)																											  //This for loop will decrement the duty cycle starting
-		 {         																																						//from Period-2 until the duty cycle is 0 and the BLUE LED
-      TimerMatchSet(TIMER1_BASE, TIMER_A, i);  
+    for(int i=1; i < Period-1; i++)																											  //This for loop will increment the duty cycle starting
+		 {         																																						//from 1 until the duty cycle is equal to the period 
+      TimerMatchSet(TIMER1_BASE, TIMER_A, i);                                             //and the BLUE LED will dim until its off.
       SysCtlDelay(time);
 		 }  
 		
 		//Red brightness goes up
-		for(int i=Period-2; i > 0; i--)																												
-		 {           																																					//from Period-2 until the duty cycle is 0 and the BLUE LED
-			TimerMatchSet(TIMER0_BASE, TIMER_B, i);                           
+		for(int i=Period-2; i > 0; i--)																												//This for loop will decrement the duty cycle starting
+		 {           																																					//from Period-2 until the duty cycle is 0 and the RED LED
+			TimerMatchSet(TIMER0_BASE, TIMER_B, i);                                             //will become progressively brighter.                        
 			SysCtlDelay(time);
 		 }  
 			
 		//Red brightness goes down              
-    for(int i=1; i < Period-1; i++)
-		 {																																										//from Period-2 until the duty cycle is 0 and the BLUE LED
-      TimerMatchSet(TIMER0_BASE, TIMER_B, i); 			
+    for(int i=1; i < Period-1; i++)                                                       //This for loop will increment the duty cycle starting
+		 {																																										//from 1 until the duty cycle is equal to the period 
+      TimerMatchSet(TIMER0_BASE, TIMER_B, i); 																						//and the RED LED will dim until its off.	
       SysCtlDelay(time);
 		 } 
 
 	  //Green brightness goes up         
-    for(int i=Period-2; i > 0; i--)
-		 {																																										//from Period-2 until the duty cycle is 0 and the BLUE LED
-      TimerMatchSet(TIMER1_BASE, TIMER_B, i);  
+    for(int i=Period-2; i > 0; i--)																												//This for loop will decrement the duty cycle starting
+		 {																																										//from Period-2 until the duty cycle is 0 and the GREEN LED
+      TimerMatchSet(TIMER1_BASE, TIMER_B, i); 																						//will become progressively brighter. 
       SysCtlDelay(time);
 		 }  
  
 	  //Green brightness goes down              
-    for(int i=1; i < Period-1; i++)
-		 {																																											
-      TimerMatchSet(TIMER1_BASE, TIMER_B, i); 			
+    for(int i=1; i < Period-1; i++)                                                       //This for loop will increment the duty cycle starting
+		 {																																										//from 1 until the duty cycle is equal to the period																									
+      TimerMatchSet(TIMER1_BASE, TIMER_B, i);																							//and the GREEN LED will dim until its off. 			
       SysCtlDelay(time);
 		 }
 		}		
 		
-	  return;
+	  return;																																								//Return to project.c
   }
