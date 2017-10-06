@@ -9,19 +9,8 @@ This should be a general description.  It should make sense to your grandma / or
 ## Hardware List
 
 1. TM4C123GH6PM
-   -Port F RGB LEDs
+   -Port F RGB LEDs (PF1, PF2, PF3)
    -Port F user switches (SW1 & SW2)
-   
-Table 2-2. User Switches and RGB LED Signals
-
-GPIO Pin               Pin Function                     USB Device
-PF4                          GPIO                                  SW1
-PF0                          GPIO                                  SW2
-PF1                          GPIO                         RGB LED (Red)
-PF2                          GPIO                         RGB LED (Blue)
-PF3                          GPIO                       RGD LED (Green)
-(From the user guide)
-
 
 ## Hardware Description
 The Motor is connected to the encoder via JPF-23 cable, 3 wire, doubled shield.  The Encoder has a 13 bit resolution which allows the micrprocessor to control the motor to within N rpms, etc etc.  The schematic is show below.
