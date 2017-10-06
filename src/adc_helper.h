@@ -2,8 +2,8 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "sysctl.h"
 #include "gpio.h"
+#include "sysctl.h"
 #include "hw_memmap.h"
 #include "hw_types.h"
 #include "hw_gpio.h"
@@ -18,7 +18,7 @@ struct ADC_DATA
 	uint32_t POT3;
 	uint32_t POT4;
 	uint32_t GYRO;
-	uint32_t sensor2;
+	uint32_t PRESSURE;
 	
 };
 

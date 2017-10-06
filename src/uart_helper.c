@@ -117,7 +117,4 @@ void print_menu()
 	}
 	
 	
-	// maybe create an array and have the value printed/sent to the uart port?
-	//Uart must be initialized first.
-	//code here.
 }

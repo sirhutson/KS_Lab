@@ -6,11 +6,13 @@
  void PWM_setup(void)
  {
 
+
   //Set GPIO to work with timers
   GPIOPinConfigure(GPIO_PF1_T0CCP1);                                                       //Configures PF1 with TIMER 0 B
 	GPIOPinConfigure(GPIO_PF2_T1CCP0);                                                       //Configures PF2 with TIMER 1 A
   GPIOPinConfigure(GPIO_PF3_T1CCP1);                                                       //Configures PF3 with TIMER 1 B
   GPIOPinTypeTimer(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);                     //Configures pins PF1,PF2, and PF3 for use by the timer peripheral
+
 	 
   //Define Period and Duty_Cycle
   Period = SysCtlClockGet()/100000;                                                        //Gets the processor clock rate and devides it by 100kHz. Period=800Hz
@@ -28,19 +30,22 @@
   TimerLoadSet(TIMER1_BASE, TIMER_B, Period -1);                                					 //Sets the value that TIMER 1 B will load to when it hits 0
   TimerMatchSet(TIMER1_BASE, TIMER_A, Duty_Cycle);                                         //Sets the value that TIMER 1 A will be low
   TimerMatchSet(TIMER1_BASE, TIMER_B, Duty_Cycle);  																			 //Sets the value that TIMER 1 B will be low
-	
+
+
 	//Turn on timers
   TimerEnable(TIMER0_BASE, TIMER_B);                																			 //Enables TIMER 0 B for use
   TimerEnable(TIMER1_BASE, TIMER_A|TIMER_B);                             									 //Enables TIMER 1 A & B for use
 
 	return;         																																				 //Return to project.c
 
+
  }
 
   void PWM_example()
 	{
-	 
+
 	for (int x=0; x<10; x++)                                                                //Repeat this sequence of light dimming 10 times
+
 	 {
 		 //Blue brightness goes up
 		for(int i=Period-2; i > 0; i--)                                                       //This for loop will decrement the duty cycle starting

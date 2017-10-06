@@ -4,6 +4,11 @@
 
 struct ADC_DATA ADCinfo;
 
+void SysTick_Handler()
+{
+	
+}
+
 void loading() // This function cuts the red led on and off, totally unneccessary 
 {
 int i;
@@ -61,32 +66,38 @@ void read_from_terminal()
 	{
 		case 'a':
 		case 'A':
-			printf("Executing function A which is...");
+			printf("Executing function A which is NVIC/SYSTick for whatever reason");
 			break;
 		
 		case 'b':
 		case 'B':
-			printf("Executing function A which is...");
+			printf("Executing function B which is a loading 'screen' ");
+			loading();
 			break;
 		
 		case 'c':
 		case 'C':
-			printf("Executing function A which is...");
+			printf("Executing function C which is get ADC data");
+			process_ADC();
+			print_ADC_DATA(&ADCinfo);
 			break;
 		
 		case 'd':
 		case 'D':
-			printf("Executing function A which is...");
+			printf("Executing function D which is LED display");
+			LED_Display();
 			break;
 		
 		case 'e':
 		case 'E':
-			printf("Executing function A which is...");
+			printf("Executing function E which is turn motor left"); // no motor exists led will just pwm 
+			PWM_example();
 			break;
 		
 		case 'f':
 		case 'F':
-			printf("Executing function A which is...");
+			printf("Executing function F which is turn motor right"); // no motor exists led will just pwm 
+			PWM_example();
 			break;
 		
 		default:
@@ -96,20 +107,22 @@ void read_from_terminal()
 }
 int main()
 {
+
+		ADC_setup(); // goes first because it has the clock settings 
 		Gpio_setup();
 	
 		UART_setup();
-	
-		//LED_Display();
-	  PWM_setup(); 	 
-		PWM_example();
 
-	
+		  
+	  PWM_setup();
+
+
 		
-	
-		//print_menu();
-	
-		//read_from_terminal();
+		
+
+		print_menu();
+		read_from_terminal();
+
 }
 
 
