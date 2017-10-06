@@ -20,18 +20,24 @@ C files added by users, special functions, important functions, software flow, e
 
 The file structure for this projects is as follows:
 
-<pre><code>├── project_template
     |   ├── .gitignore                <em>(list of files to ignore in Repo)</em>
     |   ├── README.md                 <em>(a README file in markup language)</em>
     |   ├── project.uvprojx           <em>(the keil project file)</em>
     |   ├── project.c                 <em>(your main c file)</em>
-    |   ├── project.h                 <em>(your main header)</em>
+    |   ├── project.h                 <em>(main header)</em>
     |   ├── project.sct               <em>(scatter file)</em>
     |   ├── startup_rvmdk.S           <em>(startup file in asm)</em>
     |   ├── src                       <em>(Directory for your .c and .h )</em>
-            ├── *.c files             <em>(*.c , the meat of the code)</em>
-            ├── *.h files             <em>(*.h , the menu of the code)</em>
-    |       └── ...  
+            ├── PWM.c 
+            ├── PWM.h
+            ├── SysTick_helper.c 
+            ├── Systick_helper.h
+            ├── adc_helper.c
+            ├── adc_helper.h
+            ├── gpio_helper.c
+            ├── gpio_helper.h
+            ├── uart_helper.c
+    |       └── uart_helper.h
     |   ├── inc                       <em>(Directory for precompiled libraries and headers)</em>
     |       ├── *.h files             <em>(*.h , the menu for micro controller)</em>
     |       ├── *.lib files           <em>(*.lib ,precompiled libraries)</em>
@@ -40,7 +46,7 @@ The file structure for this projects is as follows:
     |       ├── *.h files             
     |       ├── *.c files
     |       └── ...  
-    └── </code></pre>
+  
 
 ## Summary and Conclusions
 Put something here that shows you learned something and / or you understand what you are talking about.  
