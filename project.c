@@ -106,8 +106,7 @@ void read_from_terminal()
 }
 int main()
 {
-		IntEnable(-1);
-		IntPendClear(-1);
+
 		ADC_setup(); // goes first because it has the clock settings 
 		Gpio_setup();
 	
