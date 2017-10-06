@@ -1,83 +1,89 @@
-#include "PWM.h"
+ #include "PWM.h"
 
-int Period, dutyCycle;
-int value;
+ int Period, Duty_Cycle, value;																														 //Initializes variables
+ 
 
  void PWM_setup(void)
  {
 	
-//set GPIO to work with timer	1
-  GPIOPinConfigure(GPIO_PF1_T0CCP1);  //configure pf1 with timer 0 b
-	GPIOPinConfigure(GPIO_PF2_T1CCP0);  //configure pf2 with timer 1 a
- GPIOPinConfigure(GPIO_PF3_T1CCP1);   //configure pf3 with timer 1 b
-  GPIOPinTypeTimer(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);
+  //Set GPIO to work with timers
+  GPIOPinConfigure(GPIO_PF1_T0CCP1);                                                       //Configures PF1 with TIMER 0 B
+	GPIOPinConfigure(GPIO_PF2_T1CCP0);                                                       //Configures PF2 with TIMER 1 A
+  GPIOPinConfigure(GPIO_PF3_T1CCP1);                                                       //Configures PF3 with TIMER 1 B
+  GPIOPinTypeTimer(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);                     //Configures pins PF1,PF2, and PF3 for use by the timer peripheral
 	 
-  //define period and duty cycle
-  Period = SysCtlClockGet()/100000; //800Hz
-  dutyCycle = Period/2; //400Hz
+  //Define Period and Duty_Cycle
+  Period = SysCtlClockGet()/100000;                                                        //Gets the processor clock rate and devides it by 100kHz. Period=800Hz
+  Duty_Cycle = Period/2;                                                                   //Sets Duty_Cycle to 400Hz
 
-//setup timer	0 (b) and timer 1 (a&b)
-  SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0); 
-  SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER1);    
+  ///Setup TIMER 0 B and TIMER 1 A & B
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);                                            //Enables the TIMER 0 peripheral
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER1);                                            //Enables the timer 1 peripheral
 
-  TimerConfigure(TIMER0_BASE, TIMER_CFG_SPLIT_PAIR|TIMER_CFG_B_PWM);   
-  TimerLoadSet(TIMER0_BASE, TIMER_B, Period -1);                     
-  TimerMatchSet(TIMER0_BASE, TIMER_B, dutyCycle); 
-  TimerConfigure(TIMER1_BASE, TIMER_CFG_SPLIT_PAIR|TIMER_CFG_A_PWM|TIMER_CFG_B_PWM);   
-  TimerLoadSet(TIMER1_BASE, TIMER_A, Period -1);
-  TimerLoadSet(TIMER1_BASE, TIMER_B, Period -1);  
-  TimerMatchSet(TIMER1_BASE, TIMER_A, dutyCycle);  
-  TimerMatchSet(TIMER1_BASE, TIMER_B, dutyCycle); 
+  TimerConfigure(TIMER0_BASE, TIMER_CFG_SPLIT_PAIR|TIMER_CFG_B_PWM);                       //Configures TIMER 0 B into PWM mode
+  TimerLoadSet(TIMER0_BASE, TIMER_B, Period -1);                                           //Sets the value that TIMER 0 B will load to when it hits 0
+  TimerMatchSet(TIMER0_BASE, TIMER_B, Duty_Cycle);                                         //Sets the value that TIMER 0 B will be low
+  TimerConfigure(TIMER1_BASE, TIMER_CFG_SPLIT_PAIR|TIMER_CFG_A_PWM|TIMER_CFG_B_PWM);       //Configures TIMER 1 A & B into PWM mode  
+  TimerLoadSet(TIMER1_BASE, TIMER_A, Period -1);                                           //Sets the value that TIMER 1 A will load to when it hits 0
+  TimerLoadSet(TIMER1_BASE, TIMER_B, Period -1);                                					 //Sets the value that TIMER 1 B will load to when it hits 0
+  TimerMatchSet(TIMER1_BASE, TIMER_A, Duty_Cycle);                                         //Sets the value that TIMER 1 A will be low
+  TimerMatchSet(TIMER1_BASE, TIMER_B, Duty_Cycle);  																			 //Sets the value that TIMER 1 B will be low
 	
-	  //Turn on both timers
-  TimerEnable(TIMER0_BASE, TIMER_B);
-  TimerEnable(TIMER1_BASE, TIMER_A|TIMER_B);
+	//Turn on timers
+  TimerEnable(TIMER0_BASE, TIMER_B);                																			 //Enables TIMER 0 B for use
+  TimerEnable(TIMER1_BASE, TIMER_A|TIMER_B);                             									 //Enables TIMER 1 A & B for use
 
-	return;
+	return;         																																				 //Return to project.c
 
  }
 
- void PWM_example(){
+  void PWM_example()
+	{
 	 
-	for (int x=0; x<=10; x++)
+	for (int x=0; x<10; x++)                                                                //Repeat this sequence of light dimming 10 times
 	 {
-		for(int i=Period-2; i >  0;i--){          
-			TimerMatchSet(TIMER1_BASE, TIMER_A, i);   // Blue on
-
+		 //Blue brightness goes up
+		for(int i=Period-2; i > 0; i--)                                                       //This for loop will decrement the duty cycle starting
+		 {          																																					//from Period-2 until the duty cycle is 0 and the BLUE LED
+			TimerMatchSet(TIMER1_BASE, TIMER_A, i);                                             //will become progressively brighter.
 			SysCtlDelay(time);
-			}  
+	   }  
       
-		//Blue brightness goes down - PF2
-    for(int i=1; i < Period-1; i++){          //blue brightness goes down 
+		//Blue brightness goes down
+    for(int i=1; i < Period-1; i++)																											  //This for loop will decrement the duty cycle starting
+		 {         																																						//from Period-2 until the duty cycle is 0 and the BLUE LED
       TimerMatchSet(TIMER1_BASE, TIMER_A, i);  
       SysCtlDelay(time);
-			}  
+		 }  
 		
-			for(int i=Period-2; i >  0;i--){           
-			TimerMatchSet(TIMER0_BASE, TIMER_B, i);   // Red on
-
+		//Red brightness goes up
+		for(int i=Period-2; i > 0; i--)																												
+		 {           																																					//from Period-2 until the duty cycle is 0 and the BLUE LED
+			TimerMatchSet(TIMER0_BASE, TIMER_B, i);                           
 			SysCtlDelay(time);
-			}  
+		 }  
 			
-					// red brightness goes down              
-    for(int i=1; i < Period-1; i++){
+		//Red brightness goes down              
+    for(int i=1; i < Period-1; i++)
+		 {																																										//from Period-2 until the duty cycle is 0 and the BLUE LED
       TimerMatchSet(TIMER0_BASE, TIMER_B, i); 			
       SysCtlDelay(time);
-			} 
+		 } 
 
-	    //Green brightness goes up - PF3         //green brightness 
-    for(int i=Period-2; i >  0;i--){
+	  //Green brightness goes up         
+    for(int i=Period-2; i > 0; i--)
+		 {																																										//from Period-2 until the duty cycle is 0 and the BLUE LED
       TimerMatchSet(TIMER1_BASE, TIMER_B, i);  
       SysCtlDelay(time);
-			}  
+		 }  
  
-			//Green brightness goes down              
-    for(int i=1; i < Period-1; i++){
+	  //Green brightness goes down              
+    for(int i=1; i < Period-1; i++)
+		 {																																											
       TimerMatchSet(TIMER1_BASE, TIMER_B, i); 			
       SysCtlDelay(time);
-			}
+		 }
 		}		
 		
 	  return;
-
-}
+  }
