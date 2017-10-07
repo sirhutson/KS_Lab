@@ -43,3 +43,4 @@ void print_ADC_DATA( struct ADC_DATA * INFO);
 
 extern struct ADC_DATA ADCinfo;
 extern struct ADC_DATACONVERTED ADCconvertedinfo;
+

@@ -9,12 +9,10 @@
 // function.
 //********************************************************************
 struct ADC_DATA ADCinfo;
-struct ADC_DATACONVERTED ADCconvertedinfo;
 struct SysTickTimers Mytimer;
-
 void SysTick_Handler()
 {
-	
+	Count = Count++;
 }
 
 void loading() // This function cuts the red led on and off, totally unneccessary 
@@ -117,9 +115,10 @@ int main()
 {
 
 		ADC_setup(); // goes first because it has the clock settings 
+  	SysTick_Setup();	//Setup Systick & begin timer
 		Gpio_setup(); 
-	
 		UART_setup();
+    SysTickDifference(&Mytimer);	//read timer after GPIO and UART setup (as a test) and display timer values on UART
 
 		  
 	  PWM_setup();
@@ -128,3 +127,4 @@ int main()
 		read_from_terminal();
 
 }
+

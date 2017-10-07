@@ -6,6 +6,7 @@
 #include "../inc/hw_nvic.h"
 #include "../inc/hw_types.h"
 
+
 struct SysTickTimers
 {
 	uint32_t mSTimer;
@@ -13,7 +14,7 @@ struct SysTickTimers
 };
 
 void SysTick_Setup(void);
-void InterruptEnable(void);
-int SysTickDifference(struct SysTickTimers * myTimer);
+void SysTickDifference(struct SysTickTimers * myTimer);
 
 extern struct SysTickTimers Mytimer;
+extern int Count;
