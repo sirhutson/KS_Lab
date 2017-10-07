@@ -1,6 +1,7 @@
 #include "gpio_helper.h"
 
-	//This function sets up GPIO pins
+	//This function sets up GPIO inputs and outputs.  We use the on board switches  1 and 2 as GPIO inputs and the on board LED as our output.
+	// we also have enabled the external mom switches for inputs as well.  This function can be called from our main function.
 void Gpio_setup()
 	{
 			SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);  // Enables the use of PORTF
@@ -16,12 +17,10 @@ void Gpio_setup()
 			HWREG(GPIO_PORTF_BASE + GPIO_O_CR)  = 0x01;
 			HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = 0;
 		
-		
 		  // Port D unlocked below
 			HWREG(GPIO_PORTD_BASE + GPIO_O_LOCK) = GPIO_LOCK_KEY;
 			HWREG(GPIO_PORTD_BASE + GPIO_O_CR)  = 0x01;
 			HWREG(GPIO_PORTD_BASE + GPIO_O_LOCK) = 0;
-		
 		
 			GPIODirModeSet(GPIO_PORTF_BASE, GPIO_PIN_4|GPIO_PIN_0, GPIO_DIR_MODE_IN);
 			GPIOPadConfigSet(GPIO_PORTF_BASE,GPIO_PIN_4|GPIO_PIN_0,GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU);

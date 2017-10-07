@@ -107,12 +107,14 @@ void read_from_terminal()
 int main()
 {
 
-		IntEnable(15);
+		//IntEnable(15);
+		
 		SysTick_Setup();	//Setup Systick & begin timer
 		Gpio_setup();
-		int uSTime = SysTickDifference(&Mytimer);	//read timer after GPIO setup.  
-	
 		UART_setup();
+		SysTickDifference(&Mytimer);	//read timer after GPIO setup and display timer values on UART 
+	
+		
 	
 		//LED_Display();
 	  
