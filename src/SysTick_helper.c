@@ -1,7 +1,7 @@
 #include "SysTick_helper.h"
 #include <inttypes.h>
 
-int periodSet = 0x0000000F;
+int periodSet = 0xFFFFFFF; //load with max value since I can't get NVIC to work.... if it runs out, it runs out and we have no timer
 int TimeDiff;
 int Count = 0;
 
@@ -19,9 +19,8 @@ void SysTickDifference(struct SysTickTimers * myTimer)
 	TimeDiff = (periodSet-CounterVal)*(12.5);
 	Mytimer.uSTimer = TimeDiff/(10^3);	//microsecond timer value
 	Mytimer.mSTimer = TimeDiff/(10^6);	//millisecond timer value 
-	printf("%" PRId64 "\n", Mytimer.uSTimer);
-	printf("%" PRId32 "\n", Mytimer.mSTimer);
-	
+	printf("%" PRId64 "\n", Mytimer.uSTimer); //print the microsecond timer via UART
+	printf("%" PRId32 "\n", Mytimer.mSTimer); //print the millisecond timer via UART
 }
 
 

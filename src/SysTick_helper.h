@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "../driverlib/systick.h"
 #include "../driverlib/interrupt.h"
-#include "../inc/hw_ints.h"
+
 #include "../inc/hw_nvic.h"
 #include "../inc/hw_types.h"
 
